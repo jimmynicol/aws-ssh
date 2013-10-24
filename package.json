@@ -1,0 +1,35 @@
+{
+  "name": "aws-ssh",
+  "version": "0.0.1",
+  "description": "Log into your EC2 instances via keywords",
+  "main": "lib/index.js",
+  "bin": {
+    "aws-ssh": "bin/cli.js"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "keywords": [
+    "aws",
+    "ssh",
+    "ec2",
+    "keys",
+    "node"
+  ],
+  "author": "James Nicol",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "~1.9.0",
+    "prompt": "~0.2.11",
+    "commander": "~2.0.0",
+    "colors": "~0.6.2"
+  },
+  "devDependencies": {
+    "time-grunt": "~0.1.1",
+    "grunt-contrib-jshint": "~0.6.4",
+    "load-grunt-tasks": "~0.2.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt": "~0.4.1",
+    "grunt-simple-mocha": "~0.4.0"
+  }
+}

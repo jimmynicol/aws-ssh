@@ -20,8 +20,8 @@ program
 // handle initializing the tool, asking for the key and secret
 if (program.init){
   require('../lib/init')(configFile);
+  process.exit(0);
 }
-
 
 // print out the config as listed
 if (program.config){
@@ -37,8 +37,13 @@ if (program.config){
   console.log('secretAccessKey: ', config.secretAccessKey.grey.bold);
   console.log('region:          ', config.region.grey.bold);
   console.log('');
+  process.exit(0);
 }
 
 if (program.args.length > 0){
-  require('../lib/instances').listInstances(program.args[0]);
+  require('../lib/instances')
+    .listInstances(program.args[0])
+    .done(function(servers){
+      console.log(servers);
+    });
 }

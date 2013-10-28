@@ -2,7 +2,7 @@
   "name": "aws-ssh",
   "version": "0.0.1",
   "description": "Log into your EC2 instances via keywords",
-  "main": "lib/index.js",
+  "main": "bin/cli.js",
   "bin": {
     "aws-ssh": "bin/cli.js"
   },

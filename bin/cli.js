@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 'use strict';
 
-var program, pkg, fs, configFile, config;
+var program, pkg, fs, _, ssh, configFile, config;
 
-program = require('commander');
-pkg = require('../package.json');
-fs = require('fs');
+program    = require('commander');
+pkg        = require('../package.json');
+fs         = require('fs');
+_          = require('lodash');
+ssh        = require('../lib/ssh');
 configFile = process.env.HOME + '/.awssshrc';
 require('colors');
 
@@ -33,9 +35,9 @@ if (program.config){
   }
 
   console.log('\n★  Your config settings are:\n'.yellow);
-  console.log('accessKeyId:     ', config.accessKeyId.grey.bold);
-  console.log('secretAccessKey: ', config.secretAccessKey.grey.bold);
-  console.log('region:          ', config.region.grey.bold);
+  console.log('  accessKeyId:     ', config.accessKeyId.grey.bold);
+  console.log('  secretAccessKey: ', config.secretAccessKey.grey.bold);
+  console.log('  region:          ', config.region.grey.bold);
   console.log('');
   process.exit(0);
 }
@@ -44,6 +46,11 @@ if (program.args.length > 0){
   require('../lib/instances')
     .listInstances(program.args[0])
     .done(function(servers){
-      console.log(servers);
+
+      ssh(servers[0]);
+
+      // _.each(servers, function(server, i){
+      //   server.printShort('  ' + String(i + 1) + ':');
+      // });
     });
 }
